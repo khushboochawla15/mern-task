@@ -1,62 +1,81 @@
-body{
-    background-color:#f0dfdc;
+body {
+    background-color: #f0dfdc;
     padding: 0;
     margin: 0;
     border: #8d6a63 10px solid;
-}   
-header{
+}
+
+header {
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     background-color: #8d6a63;
-    padding: 2px;
-    font-family:'Segoe UI', Tahoma,  Verdana, sans-serif;
+    padding: 15px;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-weight: bold;
 }
-main{
+
+img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 6px #8d6a63 solid;
     
 }
-img{
+#img{
     width: 300px;
-     height: 300px;
+    height: 300px;
+    border: 5px #8d6a63 solid;
     border-radius: 50%;
-    border: 6px   #8d6a63 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
-#sec1{
+
+#sec1 {
     display: flex;
     gap: 35px;
     align-items: center;
     justify-content: center;
     padding: 30px;
+    flex-wrap: wrap; /* Allows stacking on small screens */
 }
-#img-container{
-    width: 300px;
-     height: 300px;
+
+#img-container {
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    border: 30px  #d1a49b  solid;
-    box-shadow: 7px 7px 19px gray ;
+    border: 30px #d1a49b solid;
+    box-shadow: 7px 7px 19px gray;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#content{
+
+#content {
     width: 50%;
-   
 }
-h2{
+
+h2 {
     color: #8d6a63;
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-weight: bolder;
     font-size: 30pt;
-    
 }
-p{
+
+p {
     color: #8d6a63;
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-weight: medium;
 }
-.skill{
+
+.skill {
     width: 100px;
     height: 100px;
-    border: 5px #8d6a63 solid ;
+    border: 5px #8d6a63 solid;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -65,36 +84,145 @@ p{
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-weight: bold;
 }
-    
 
-#sec2{
+#sec2 {
     display: flex;
     gap: 40px;
     align-items: center;
     justify-content: center;
     padding: 20px;
-
-
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
-.skill-container{
-    width: 100px;
-     height: 100px;
+
+.skill-container {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    border: 10px  #d1a49b  solid;
-    
+    border: 10px #d1a49b solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px; /* Add spacing between skill items */
+    transition: all 0.5s ease;
 }
-footer{
+
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     background-color: #8d6a63;
     padding: 8px;
-    font-family:'Segoe UI', Tahoma,  Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-weight: medium;
     font-size: medium;
 }
-.skill-container:hover{
-    box-shadow: 7px 7px 19px gray ;
-    
+
+.skill-container:hover {
+    box-shadow: 7px 7px 19px gray;
+    transform: scale(1.2,1.2);
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    #sec1 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #content {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    #img-container {
+        width: 320px;
+        height: 320px;
+    }
+
+    h2 {
+        font-size: 26pt;
+    }
+
+    p {
+        font-size: 16pt;
+    }
+
+    #sec2 {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+    .skill{
+        width: 100px;
+        height: 100px;
+    }
+
+    .skill-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    footer {
+        font-size: 14px;
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    header {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 24pt;
+    }
+
+    p {
+        font-size: 14pt;
+    }
+
+    .skill {
+        width: 100px;
+        height: 100px;
+        font-size: 12pt;
+    }
+
+    #sec2 {
+        gap: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .skill-container {
+        width: 120px;
+        height: 120px;
+        margin: 10px;
+    }
+
+    footer {
+        font-size: 12px;
+        padding: 5px;
+    }
+    img{
+        width: 180px;
+        height: 180px;
+    }
+    #img{
+        width: 180px;
+        height: 180px;
+    }
+
+    #img-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    #sec1 {
+        padding: 15px;
+    }
 }
