@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body class="flex min-h-screen justify-center items-center bg-gradient-to-b from-blue-300 to-pink-200">
+     <div class="w-full max-w-md bg-white p-6 m-6 rounded-2xl shadow-2xl shadow-gray-500 ">
+      <h1 class="text-center md:text-4xl 3xl font-extrabold text-gray-500 p-2">Login</h1>
+    <div class="w-full"><input type="text"  placeholder="Enter username" id="uname" class="w-full p-3 border rounded-xl m-2 focus:outline-none" /></div>
+    <div><input type="password" placeholder="Enter password" id="pwd" class="w-full p-3 border rounded-xl m-2 focus:outline-none "/></div>
+    <button class="bg-blue-500 hover:bg-blue-700  shadow-md text-white font-bold p-3 m-2 rounded-xl w-full" onclick="login()">login</button>
+
+    <h1 id="msg" class="font-medium p-2 m-2 text-red-500"></h1>
+</div>
+    <script>
+        function login(){
+           var uname =document.getElementById("uname").value;
+           var pwd=document.getElementById("pwd").value;
+            var msg=document.getElementById("msg");
+           if(uname==""){
+           msg.innerHTML = "Please Enter Username!!"
+           }
+           else if(pwd==""){
+             msg.innerHTML = "Please Enter Password!!"
+           }
+           else if(uname=="khushboo" && pwd=="khushboochawla"){
+             msg.innerHTML = "Login success!!"
+             document.getElementById("msg").style.color="green"
+           }
+           else{
+             msg.innerHTML = "Login failed !!"
+           }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body class="bg-gradient-to-b from-gray-500 to-gray-300 min-h-screen flex justify-center items-center">
+    <main class="w-full bg-white max-w-md p-6 m-6 rounded-2xl shadow-2xl shadow-black">
+        <h1 class="md:text-4xl text-lg font-semibold md:font-extrabold text-gray-500 text-center p-2">Calculator</h1>
+    <div><input type="text" placeholder="Enter digit1" id="num1" class="p-3 focus:outline-none w-full border rounded-xl m-2"/></div>
+    <div><input type="text" placeholder="Enter digit2" id="num2" class="p-3 focus:outline-none w-full border rounded-xl m-2"/></div>
+    <div class="flex m-2 gap-2 sm:justify-evenly justify-center items-center "><button onclick="add()" class="text-center bg-gray-500 text-lg sm:px-5 px-1 py-2 hover:font-bold hover:bg-gray-700 shadow-md text-white sm:rounded-xl rounded-md font-medium">+</button>
+    <button onclick="substract()" class="text-center bg-gray-500 text-lg sm:px-5 px-1 py-2 hover:font-bold hover:bg-gray-700 shadow-md text-white sm:rounded-xl rounded-md font-medium">-</button>
+    <button onclick="multiply()" class="text-center bg-gray-500 text-lg sm:px-5 px-1 py-2 hover:font-bold hover:bg-gray-700 shadow-md text-white sm:rounded-xl rounded-md font-medium">*</button>
+    <button onclick="divide()" class="text-center bg-gray-500 text-lg sm:px-5 py-2 px-1 hover:font-bold hover:bg-gray-700 shadow-md text-white sm:rounded-xl rounded-md font-medium">/</button></div>
+    <h1 id="result" class="m-2 font-semibold p-3 text-green-500 text-lg"></h1>
+    </main>
+    <script>
+        var num1=document.getElementById("num1");
+        var num2=document.getElementById("num2");
+        var result = document.getElementById("result");
+        function add(){
+            var sum = parseInt(num1.value) + parseInt(num2.value)
+             result.innerHTML= "Your answer is" +" " + sum;
+        }
+        function substract(){
+            var substract = parseInt(num1.value) - parseInt(num2.value)
+            result.innerHTML= "Your answer is" +" " + substract;
+        }
+        function multiply(){
+            var multiply = parseInt(num1.value) * parseInt(num2.value)
+            result.innerHTML= "Your answer is" +" " + multiply;
+        }
+        function divide(){
+            var divide = parseInt(num1.value) / parseInt(num2.value)
+            result.innerHTML= "Your answer is" +" " + divide;
+        }
+    </script>
+</body>
+
+</html>
