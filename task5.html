@@ -7,18 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style3.css">
 </head>
-<body class="bg-gradient-to-b from-gray-500 to-gray-300 min-h-screen flex justify-center items-center">
-    <main class="w-full bg-white max-w-md p-6 m-6 rounded-2xl shadow-2xl shadow-black">
+<body class="bg-slate-900 flex justify-center items-center min-h-screen">
+    <main class= "bg-slate-700 text-gray-400 w-full max-w-md p-6 m-6 rounded-lg shadow-2xl shadow-black">
         <h1 class="md:text-4xl text-lg font-semibold md:font-extrabold text-gray-500 text-center p-2">Calculator</h1>
-    <div><input type="text" placeholder="Enter digit1" id="num1" class="p-3 focus:outline-none w-full border rounded-xl m-2"/></div>
-    <div><input type="text" placeholder="Enter digit2" id="num2" class="p-3 focus:outline-none w-full border rounded-xl m-2"/></div>
+    <div><input type="text" placeholder="Enter digit1" id="num1" class="p-3  w-full  border-2 border-slate-500 focus:outline-none bg-slate-600 rounded-xl m-2"/></div>
+    <div><input type="text" placeholder="Enter digit2" id="num2" class="p-3 focus:outline-none w-full  rounded-xl m-2 border-2 border-slate-500  bg-slate-600"/></div>
     <div class="flex justify-evenly items-center pt-5">
-        <button onclick="add()" class="bg-gray-500 p-4 rounded-lg text-2xl hover:bg-gray-700 text-white">+</button> 
-        <button onclick="substract()" class="bg-gray-500 p-4 rounded-lg text-2xl hover:bg-gray-700 text-white">-</button>
-        <button onclick="multiply()" class="bg-gray-500 text-white p-4 rounded-lg text-2xl hover:bg-gray-700">*</button>
-        <button onclick="divide()" class="bg-gray-500 p-4 rounded-lg text-2xl hover:bg-gray-700 text-white">/</button>
+        <button onclick="add()" class="bg-gray-800 p-4 rounded-lg text-2xl hover:bg-slate-900 text-gray-400 border-2 border-slate-600">+</button> 
+        <button onclick="substract()" class="bg-gray-800 p-4 rounded-lg text-2xl hover:bg-gray-900 text-gray-400 border-2 border-slate-600">-</button>
+        <button onclick="multiply()" class="bg-gray-800 text-gray-400 p-4 rounded-lg text-2xl hover:bg-gray-900 border-2 border-slate-600">*</button>
+        <button onclick="divide()" class="bg-gray-800 p-4 rounded-lg text-2xl hover:bg-gray-900 text-gray-400 border-2 border-slate-600">/</button>
 </div>
-    <h1 id="result" class="m-2 font-semibold p-3 text-green-500 text-lg"></h1>
+    <h1 id="result" class="m-2 font-semibold p-3 text-gray-400 text-lg"></h1>
     </main>
     <script>
         var num1=document.getElementById("num1");

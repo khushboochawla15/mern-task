@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchBar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style3.css">
+
+</head>
+<body class="bg-slate-900 flex justify-center items-center min-h-screen">
+    <main class="bg-slate-700 text-gray-400 w-full max-w-md p-6 m-6 rounded-lg shadow-2xl shadow-black">
+        <h1 class="text-center md:text-4xl text-3xl font-bold text-gray-500 p-2">Search Box</h1>
+    <div class="mt-2"><input type="text" id="searchBox" placeholder="Search Here " onkeyup="filteredArray()" class=" w-full p-3 rounded-lg border-2 border-slate-500 focus:outline-none bg-slate-600"/></div>
+    <div id="results" class="m-3"></div>
+</main>
+</body>
+<script>
+    var names = ["Khushboo" , "Sakshi" ,"Khushi" , "Bhupendra" , "Harsh" , "krishna" , "Anjali"]
+
+    function Display(namesToDisplay){
+        var list = document.getElementById("results");
+        list.innerHTML=namesToDisplay.map((name)=>"<div style='padding:3px; text-size:20px; font-weight:bold;'>"+name+"</div>").join(" ")
+            }
+            Display(names)
+
+            function filteredArray(){
+                var start = document.getElementById("searchBox").value.toUpperCase()
+                 var filteredNames=names.filter((entry)=>entry.toUpperCase().startsWith(start))
+                 Display(filteredNames)
+            }
+</script>
+</html>
