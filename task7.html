@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Objects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style3.css"/>
+    <style>
+        li{
+           list-style: none;
+           font-size: 13px;
+           border-radius: 5px;
+           padding: 10px;
+          
+        }
+        li:hover{
+            background-color: #45556c;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-950 flex items-center justify-center">
+    <main class="max-w-md w-full bg-gray-700 rounded-lg shadow-md shadow-gray-200 p-4 m-4">
+        <h1 class="text-center md:text-4xl text-3xl font-bold text-gray-500 p-2">Search Bar</h1>
+        <div class="mt-2"><input type="text" placeholder="Search here" id="searchBox" onkeyup="input()" class=" w-full p-3 rounded-lg border-2 border-slate-500 focus:outline-none bg-slate-600 text-gray-400" ></div>
+        <div class="flex sm:justify-center justify-start gap-1 text-[10px] md:text-sm items-center p-1 text-gray-400 m-1"><input type="radio" name="filterButton" value="name" onclick="filter('name')" checked/>Name
+            <input type="radio" name="filterButton" value="surname" onclick="filter('surname')"/>Surname
+            <input type="radio" name="filterButton" value="age" onclick="filter('age')"/>Age
+            <input type="radio" name="filterButton" value="city" onclick="filter('city')"/>City
+        </div>
+        <div id="list" class="text-gray-400"></div>
+        
+    </main>
+    <script>
+        var students = [
+                      {name:"Khushboo", surname:"Chawla",age:21,city:"Khandwa"},
+                      {name:"Nitesh", surname:"Notani",age:34,city:"Chhindwara"},
+                      {name:"Zunera", surname:"Fatima",age:21,city:"Burhanpur"},
+                      {name:"Bharti", surname:"Singh",age:25,city:"Bhopal"},
+                      {name:"Jagrati", surname:"Chawla",age:15,city:"Khandwa"},
+        ]
+        var check = "name";
+  function Display(namesToDisplay){
+    var names=document.getElementById("list")
+    names.innerHTML=namesToDisplay.map((element)=>`<li>
+        <h2>Name: ${element.name} ${element.surname}</h2>
+        <h3>Age: ${element.age}</h3>
+        <h4> City: ${element.city}</h4> 
+        </li>`)
+  }
+  function filter(checkvalue){
+    check=checkvalue
+  }
+   Display(students)
+   function input(){
+    var start = document.getElementById("searchBox").value.toUpperCase()
+    var filteredNames = students.filter((entry)=>{
+        if(check=="name"){
+            return entry.name.toUpperCase().startsWith(start)
+        }
+        if(check=="surname"){
+            return entry.surname.toUpperCase().startsWith(start)
+        }
+        if(check=="age"){
+            return entry.age==start
+        }
+        if(check=="city"){
+            return entry.city.toUpperCase().startsWith(start)
+        }
+        return true;
+    })
+    Display(filteredNames)
+   }
+    </script>
+</body>
+</html>
