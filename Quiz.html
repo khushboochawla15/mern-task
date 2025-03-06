@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-200 flex min-h-screen justify-center items-center">
+
+    <!-- Start Button -->
+    <button id="startQuiz" class="bg-white text-blue-500 text-[25px] px-[30px] py-[15px] rounded-md cursor-pointer hover:bg-blue-400 shadow-md shadow-gray-600 hover:text-white font-bold">
+        Start Quiz
+    </button>
+
+    <!-- Rules Box -->
+    <div id="rulesBox" class="w-[520px] bg-white rounded-md m-4 z-10 hidden shadow-md shadow-gray-600">
+        <div class="p-3 border-gray-200 border-b-2 flex items-center justify-center font-bold text-[20px] text-gray-500">
+            <span>Some Rules of this Quiz</span>
+        </div>
+        <div class="px-[20px] py-[15px] text-gray-800">
+            <div class="m-[5px] text-md">1. You will have only <span class="font-medium text-blue-500">15 seconds</span> per each question.</div>
+            <div class="m-[5px] text-md">2. Once you select the answer you can't reselect.</div>
+            <div class="m-[5px] text-md">3. You can't select any option once time goes off.</div>
+            <div class="m-[5px] text-md">4. You can submit your quiz any time.</div>
+            <div class="m-[5px] text-md">5. You will get points on the basis of your correct answers.</div>
+        </div>
+        <div class="flex justify-end p-3 gap-2 border-t-2 border-gray-200">
+            <button id="exitBtn" class="px-6 py-2 bg-gray-100 rounded-md font-bold text-blue-500 hover:bg-blue-300 border-2 border-blue-400 hover:text-gray-600">Exit</button>
+            <button id="continueBtn" class="px-6 py-2 bg-blue-200 rounded-md font-bold text-gray-700 hover:bg-blue-400 border-2 border-blue-400">Continue</button>
+        </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quizContainer" class="hidden w-[600px] bg-white rounded-md p-5 shadow-md shadow-gray-600">
+        <header class="flex justify-between items-center border-b-2 border-gray-200 pb-3">
+            <div class="text-xl font-bold">Awesome Quiz Application</div>
+            <div class="flex items-center gap-2">
+                <div class="text-gray-600 font-medium">Time Left:</div>
+                <div id="timer" class="text-red-500 text-lg font-bold">15</div>
+            </div>
+        </header>
+        <section class="pt-5 pb-3">
+            <div class="text-lg font-semibold"><h1>Q.<span id="qno"></span>: <span id="que"></span></h1></div>
+            <div class="mt-3">
+               <div class="p-2 m-2 cursor-pointer border rounded-md option" id="opt1" onclick="check(1)">A. <span id="op1"></span></div>
+               <div class="p-2 m-2 cursor-pointer border rounded-md option" id="opt2" onclick="check(2)">B. <span id="op2"></span></div>
+               <div class="p-2 m-2 cursor-pointer border rounded-md option" id="opt3" onclick="check(3)">C. <span id="op3"></span></div>
+               <div class="p-2 m-2 cursor-pointer border rounded-md option" id="opt4" onclick="check(4)">D. <span id="op4"></span></div>
+            </div>
+            <div class="flex justify-end items-center p-2 border-t-2 border-gray-200 gap-2">
+                <button id="next-btn" onclick="next()" class="px-6 py-2 bg-gray-100 rounded-md font-bold text-blue-500 hover:bg-blue-300 border-2 border-blue-400 hover:text-gray-600">Next</button>
+                <button id="submit-btn" onclick="submitQuiz()" class="px-6 py-2 bg-blue-200 rounded-md font-bold text-gray-700 hover:bg-blue-400 border-2 border-blue-400">Submit</button>
+            </div>
+            <div class="text-red-500 font-bold text-lg text-center mt-2">Total Questions: <span id="totalQue"></span></div>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        var startBtn = document.getElementById("startQuiz");
+        var rulesBox = document.getElementById("rulesBox");
+        var exitBtn = document.getElementById("exitBtn");
+        var continueBtn = document.getElementById("continueBtn");
+        var quizContainer = document.getElementById("quizContainer");
+        var timerElement = document.getElementById("timer");
+
+        var listOfQue = JSON.parse(localStorage.getItem("question")) || [];
+        var totalQuestions = listOfQue.length;
+        var currentIndex = 0;
+        var score = 0;
+        var timer;
+        var timeLeft = 15;
+        var optionSelected = false;
+
+        function setQuestion() {
+            if (currentIndex >= totalQuestions) {
+                alert("Quiz Completed!");
+                quizCompleted();
+                return;
+            }
+
+            var question = listOfQue[currentIndex];
+            document.getElementById("qno").innerText = currentIndex + 1;
+            document.getElementById("totalQue").innerText = totalQuestions;
+            document.getElementById("que").innerText = question.question;
+            document.getElementById("op1").innerText = question.a;
+            document.getElementById("op2").innerText = question.b;
+            document.getElementById("op3").innerText = question.c;
+            document.getElementById("op4").innerText = question.d;
+
+            resetOptions();
+            optionSelected = false;
+            resetTimer();
+        }
+
+        function resetOptions() {
+            document.querySelectorAll(".option").forEach(option => {
+                option.style.backgroundColor = "transparent";
+                option.style.pointerEvents = "auto";
+            });
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timeLeft = 15;
+            timerElement.innerText = timeLeft;
+
+            timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    next();
+                } else {
+                    timerElement.innerText = timeLeft;
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function next() {
+            if (currentIndex >= totalQuestions - 1) {
+                alert("Quiz Completed!");
+                quizCompleted();
+                return;
+            }
+            currentIndex++;
+            setQuestion();
+        }
+
+        function check(option) {
+            if (optionSelected) return;
+            optionSelected = true;
+
+            var correctAnswer = listOfQue[currentIndex].answer;
+            var selectedOption = document.getElementById("op" + option).innerText;
+            var optionDiv = document.getElementById("opt" + option);
+
+            optionDiv.style.backgroundColor = selectedOption === correctAnswer ? "#c3fdb8" : "#ffdbab";
+            if (selectedOption === correctAnswer) score++;
+
+            document.querySelectorAll(".option").forEach(opt => opt.style.pointerEvents = "none");
+        }
+
+        function submitQuiz() {
+            alert("Your Quiz Submitted!");
+            quizCompleted();
+        }
+
+        function quizCompleted() {
+            document.body.innerHTML = `<h1 class='text-center text-3xl font-bold text-blue-500'>Quiz Completed! Your Score: ${score}</h1>`;
+        }
+
+        startBtn.onclick = () => { rulesBox.style.display = "block"; startBtn.style.display = "none"; };
+        exitBtn.onclick = () => { rulesBox.style.display = "none"; startBtn.style.display = "block"; };
+        continueBtn.onclick = () => { rulesBox.style.display = "none"; quizContainer.style.display = "block"; setQuestion(); };
+    </script>
+
+</body>
+</html>
