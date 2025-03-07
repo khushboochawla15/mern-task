@@ -152,7 +152,18 @@
 
         startBtn.onclick = () => { rulesBox.style.display = "block"; startBtn.style.display = "none"; };
         exitBtn.onclick = () => { rulesBox.style.display = "none"; startBtn.style.display = "block"; };
-        continueBtn.onclick = () => { rulesBox.style.display = "none"; quizContainer.style.display = "block"; setQuestion(); };
+
+        continueBtn.onclick = () => { 
+            if (totalQuestions === 0) {
+                alert("No questions available for the quiz!");
+                rulesBox.style.display = "none";
+                startBtn.style.display = "block";
+                return;
+            }
+            rulesBox.style.display = "none"; 
+            quizContainer.style.display = "block"; 
+            setQuestion(); 
+        };
     </script>
 
 </body>
